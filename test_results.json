@@ -1,0 +1,137 @@
+[
+  {
+    "test_id": "TC-001",
+    "complexity": "simple",
+    "query": "Які витрати були зафіксовані у вересні 2026 року (2026-09)?",
+    "expected": "Виклик get_financial_records(period='2026-09', record_type='expense'); повернення витрат: salaries (110 000 UAH) та software (18 500 UAH), разом 128 500 UAH.",
+    "actual": "У вересні 2026 року (2026-09) було зафіксовано такі витрати:\n\n1. **Заробітна плата (`salaries`)**: 110 000,00 грн — *Виплати команді розробки* (ID: TX-002)\n2. **Програмне забезпечення та сервіси (`software`)**: 18 500,00 грн — *Хмарна інфраструктура AWS та LLM API* (ID: TX-003)\n\n---\n**Загальна сума витрат за вересень 2026 року:** **128 500,00 грн**.",
+    "status": "completed",
+    "steps": 2,
+    "tool_calls": [
+      "get_financial_records",
+      "get_financial_records"
+    ],
+    "sources": [
+      "get_financial_records"
+    ],
+    "confidence": 1.0,
+    "elapsed_ms": 7004,
+    "max_steps_reached": false,
+    "timeout_reached": false,
+    "stop_reason": null
+  },
+  {
+    "test_id": "TC-002",
+    "complexity": "medium",
+    "query": "Порівняй чистий прибуток і маржинальність за 2026-09 та 2026-10 при ставці податку 5%.",
+    "expected": "Отримання записів за 2026-09 і 2026-10 через get_financial_records та розрахунок прибутку через calculate_profit_metrics для обох місяців; порівняння чистого прибутку (105 925.00 UAH у вересні проти 147 250.00 UAH у жовтні) та маржі (44.14% проти 41.48%).",
+    "actual": "Ось порівняльний аналіз чистого прибутку та маржинальності за **вересень (2026-09)** та **жовтень (2026-10)** при ставці податку 5%:\n\n---\n\n### 📊 Порівняльна таблиця показників\n\n| Показник | 2026-09 | 2026-10 | Динаміка (Δ) |\n| :--- | :---: | :---: | :---: |\n| **Валовий дохід** | 240 000,00 UAH | 355 000,00 UAH | **+115 000,00 UAH** (+47,92%) |\n| **Операційні витрати** | 128 500,00 UAH | 200 000,00 UAH | **+71 500,00 UAH** (+55,64%) |\n| **Операційний прибуток** | 111 500,00 UAH | 155 000,00 UAH |...",
+    "status": "completed",
+    "steps": 3,
+    "tool_calls": [
+      "get_financial_records",
+      "get_financial_records",
+      "get_financial_records",
+      "get_financial_records",
+      "calculate_profit_metrics",
+      "calculate_profit_metrics",
+      "calculate_profit_metrics",
+      "calculate_profit_metrics"
+    ],
+    "sources": [
+      "get_financial_records",
+      "calculate_profit_metrics"
+    ],
+    "confidence": 1.0,
+    "elapsed_ms": 14137,
+    "max_steps_reached": false,
+    "timeout_reached": false,
+    "stop_reason": null
+  },
+  {
+    "test_id": "TC-003",
+    "complexity": "complex",
+    "query": "Зафіксуй новий дохід за 2026-11 на суму 65000 грн у категорію consulting з описом 'Впровадження AI-агента', а потім перевір виконання бюджету витрат за 2026-11 при ліміті 150000 грн та порахуй оновлений чистий прибуток за листопад при податку 5%.",
+    "expected": "Послідовний виклик record_transaction, analyze_expense_budget, get_financial_records та calculate_profit_metrics; підтвердження запису транзакції, статусу бюджету (140 000 / 150 000 UAH — у межах ліміту) та розрахунок чистого прибутку за 2026-11 (194 750.00 UAH при доході 345 000 UAH).",
+    "actual": "Ось результати виконання ваших запитів за листопад 2026 року (`2026-11`):\n\n---\n\n### 1. Реєстрація транзакції\n- **ID транзакції:** `TX-011`\n- **Тип:** Дохід (`INCOME`)\n- **Категорія:** `consulting`\n- **Сума:** 65 000.00 UAH\n- **Опис:** «Впровадження AI-агента»\n- **Статус:** Успішно збережено.\n\n---\n\n### 2. Виконання бюджету витрат\n- **Встановлений ліміт:** 150 000.00 UAH\n- **Фактичні витрати:** 140 000.00 UAH\n- **Використання бюджету:** 93.33%\n- **Залишок:** 10 000.00 UAH\n- **Статус:** **У межах б...",
+    "status": "completed",
+    "steps": 4,
+    "tool_calls": [
+      "record_transaction",
+      "analyze_expense_budget",
+      "record_transaction",
+      "analyze_expense_budget",
+      "get_financial_records",
+      "get_financial_records",
+      "calculate_profit_metrics",
+      "calculate_profit_metrics"
+    ],
+    "sources": [
+      "record_transaction",
+      "analyze_expense_budget",
+      "get_financial_records",
+      "calculate_profit_metrics"
+    ],
+    "confidence": 1.0,
+    "elapsed_ms": 16815,
+    "max_steps_reached": false,
+    "timeout_reached": false,
+    "stop_reason": null
+  },
+  {
+    "test_id": "TC-004",
+    "complexity": "complex_validation",
+    "query": "Перевір витрати за 2026-10 у категорії 'crypto', а також перевір загальний бюджет витрат за 2026-10 при встановленому ліміті 180000 грн.",
+    "expected": "Обробка помилки валідації Pydantic для неіснуючої категорії 'crypto' (без падіння графа), виклик analyze_expense_budget(period='2026-10', budget_limit_uah=180000) та виявлення перевитрати бюджету на 20 000.00 UAH.",
+    "actual": "Ось результати перевірки за **жовтень 2026 року (2026-10)**:\n\n---\n\n### 1. Категорія витрат «crypto»\n* **Помилка:** Категорія `crypto` не підтримується системою обліку.\n* **Дозволені категорії:** `consulting`, `investments`, `marketing`, `office`, `salaries`, `sales`, `software`, `taxes`.\n* *(Якщо ці операції стосувалися інвестицій, їх можна перевірити в категорії `investments`).*\n\n---\n\n### 2. Загальний бюджет витрат\n* **Встановлений ліміт:** 180 000,00 UAH\n* **Фактичні витрати:** 200 000,00 UAH\n...",
+    "status": "completed",
+    "steps": 2,
+    "tool_calls": [
+      "get_financial_records",
+      "analyze_expense_budget",
+      "get_financial_records",
+      "analyze_expense_budget"
+    ],
+    "sources": [
+      "get_financial_records",
+      "analyze_expense_budget"
+    ],
+    "confidence": 1.0,
+    "elapsed_ms": 11071,
+    "max_steps_reached": false,
+    "timeout_reached": false,
+    "stop_reason": null
+  },
+  {
+    "test_id": "TC-005",
+    "complexity": "guardrail_max_steps",
+    "query": "Проведи повний квартальний аудит за 2026-09, 2026-10 та 2026-11: отримай усі транзакції, порахуй чистий прибуток для кожного місяця окремо та перевір бюджет 150000 грн для кожного місяця.",
+    "expected": "Спрацювання захисного обмеження max_steps=1 після першої ітерації циклу; коректна зупинка зі статусом stopped_by_guard та повернення часткової відповіді.",
+    "actual": "Виконання перервано захисним механізмом (Досягнуто ліміт кроків (1). Зупинка циклу для запобігання перевитраті ресурсів.).\n\nЗібрані проміжні дані (6 спостережень):\nФінансові записи за 2026-09 (знайдено 3):\n- [TX-001] INCOME | sales: +240000.00 UAH (Оплата від клієнта Alpha)\n- [TX-002] EXPENSE | salaries: -110000.00 UAH (Виплати команді розробки)\n- [TX-003] EXPENSE | software: -18500.00 UAH (Хмарна інфраструктура AWS та LLM API)\nРазом доходи: 240000.00 UAH | Разом витрати: 128500.00 UAH\n---\nФінан...",
+    "status": "stopped_by_guard",
+    "steps": 1,
+    "tool_calls": [
+      "get_financial_records",
+      "get_financial_records",
+      "get_financial_records",
+      "analyze_expense_budget",
+      "analyze_expense_budget",
+      "analyze_expense_budget",
+      "get_financial_records",
+      "get_financial_records",
+      "get_financial_records",
+      "analyze_expense_budget",
+      "analyze_expense_budget",
+      "analyze_expense_budget"
+    ],
+    "sources": [
+      "get_financial_records",
+      "analyze_expense_budget"
+    ],
+    "confidence": 0.4,
+    "elapsed_ms": 4913,
+    "max_steps_reached": true,
+    "timeout_reached": false,
+    "stop_reason": "Досягнуто ліміт кроків (1). Зупинка циклу для запобігання перевитраті ресурсів."
+  }
+]

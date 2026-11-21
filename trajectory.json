@@ -1,0 +1,103 @@
+{
+  "query": "Які були доходи та витрати у 2026-10? Порахуй чистий прибуток і маржинальність при податку 5%.",
+  "status": "completed",
+  "stop_reason": null,
+  "total_steps": 6,
+  "total_time_ms": 14204,
+  "trajectory": [
+    {
+      "step_number": 1,
+      "node_name": "agent",
+      "input": "Які були доходи та витрати у 2026-10? Порахуй чистий прибуток і маржинальність при податку 5%.",
+      "output": "tool_calls: [{'name': 'get_financial_records', 'args': {'period': '2026-10', 'record_type': 'all'}}]",
+      "tool_calls": [
+        {
+          "name": "get_financial_records",
+          "args": {
+            "period": "2026-10",
+            "record_type": "all"
+          }
+        }
+      ],
+      "timestamp": "2026-11-21T11:30:52.049085+00:00",
+      "duration_ms": 3169,
+      "elapsed_ms": 3484
+    },
+    {
+      "step_number": 2,
+      "node_name": "tools",
+      "input": "get_financial_records({'period': '2026-10', 'record_type': 'all'})",
+      "output": "Фінансові записи за 2026-10 (знайдено 5):\n- [TX-004] INCOME | sales: +310000.00 UAH (Контракт з клієнтом Beta)\n- [TX-005] INCOME | consulting: +45000.00 UAH (Аудит AI-процесів)\n- [TX-006] EXPENSE | salaries: -135000.00 UAH (Зарплатний фонд за жовтень)\n- [TX-007] EXPENSE | marketing: -42000.00 UAH (Таргетована реклама B2B)\n- [TX-008] EXPENSE | software: -23000.00 UAH (Підписки SaaS та OpenRouter)\nРазом доходи: 355000.00 UAH | Разом витрати: 200000.00 UAH",
+      "tool_calls": [
+        {
+          "name": "get_financial_records",
+          "args": {
+            "period": "2026-10",
+            "record_type": "all"
+          }
+        }
+      ],
+      "timestamp": "2026-11-21T11:30:52.051241+00:00",
+      "duration_ms": 1,
+      "elapsed_ms": 3486
+    },
+    {
+      "step_number": 3,
+      "node_name": "agent",
+      "input": "Фінансові записи за 2026-10 (знайдено 5):\n- [TX-004] INCOME | sales: +310000.00 UAH (Контракт з клієнтом Beta)\n- [TX-005] INCOME | consulting: +45000.00 UAH (Аудит AI-процесів)\n- [TX-006] EXPENSE | salaries: -135000.00 UAH (Зарплатний фонд за жовтень)\n- [TX-007] EXPENSE | marketing: -42000.00 UAH (Таргетована реклама B2B)\n- [TX-008] EXPENSE | software: -23000.00 UAH (Підписки SaaS та OpenRouter)\nРазом доходи: 355000.00 UAH | Разом витрати: 200000.00 UAH",
+      "output": "tool_calls: [{'name': 'calculate_profit_metrics', 'args': {'tax_rate_percent': 5, 'total_expenses': 200000, 'total_revenue': 355000}}]",
+      "tool_calls": [
+        {
+          "name": "calculate_profit_metrics",
+          "args": {
+            "tax_rate_percent": 5,
+            "total_expenses": 200000,
+            "total_revenue": 355000
+          }
+        }
+      ],
+      "timestamp": "2026-11-21T11:30:53.473104+00:00",
+      "duration_ms": 1421,
+      "elapsed_ms": 4908
+    },
+    {
+      "step_number": 4,
+      "node_name": "tools",
+      "input": "calculate_profit_metrics({'tax_rate_percent': 5, 'total_expenses': 200000, 'total_revenue': 355000})",
+      "output": "Фінансовий розрахунок (ПРИБУТКОВИЙ):\n- Валовий дохід: 355000.00 UAH\n- Операційні витрати: 200000.00 UAH (56.34% від доходу)\n- Операційний прибуток (до податків): 155000.00 UAH\n- Податок (5.0%): 7750.00 UAH\n- Чистий прибуток: 147250.00 UAH\n- Чиста маржинальність (Net Margin): 41.48%",
+      "tool_calls": [
+        {
+          "name": "calculate_profit_metrics",
+          "args": {
+            "tax_rate_percent": 5,
+            "total_expenses": 200000,
+            "total_revenue": 355000
+          }
+        }
+      ],
+      "timestamp": "2026-11-21T11:30:53.475467+00:00",
+      "duration_ms": 1,
+      "elapsed_ms": 4910
+    },
+    {
+      "step_number": 5,
+      "node_name": "agent",
+      "input": "Фінансовий розрахунок (ПРИБУТКОВИЙ):\n- Валовий дохід: 355000.00 UAH\n- Операційні витрати: 200000.00 UAH (56.34% від доходу)\n- Операційний прибуток (до податків): 155000.00 UAH\n- Податок (5.0%): 7750.00 UAH\n- Чистий прибуток: 147250.00 UAH\n- Чиста маржинальність (Net Margin): 41.48%",
+      "output": "Ось фінансовий звіт та розрахунок прибутковості за **жовтень 2026 року (2026-10)**:\n\n---\n\n### 📊 Доходи та витрати за період\n\n#### **Доходи:**\n- **Контракт з клієнтом Beta** (`sales`): +310 000.00 UAH\n- **Аудит AI-процесів** (`consulting`): +45 000.00 UAH\n- **Загальний дохід (виручка):** **355 000.00 UAH**\n\n#### **Витрати:**\n- **Зарплатний фонд за жовтень** (`salaries`): -135 000.00 UAH\n- **Таргетована реклама B2B** (`marketing`): -42 000.00 UAH\n- **Підписки SaaS та OpenRouter** (`software`): -23...",
+      "tool_calls": [],
+      "timestamp": "2026-11-21T11:30:56.501704+00:00",
+      "duration_ms": 3025,
+      "elapsed_ms": 7937
+    },
+    {
+      "step_number": 6,
+      "node_name": "formatter",
+      "input": "Ось фінансовий звіт та розрахунок прибутковості за **жовтень 2026 року (2026-10)**:\n\n---\n\n### 📊 Доходи та витрати за період\n\n#### **Доходи:**\n- **Контракт з клієнтом Beta** (`sales`): +310 000.00 UAH\n- **Аудит AI-процесів** (`consulting`): +45 000.00 UAH\n- **Загальний дохід (виручка):** **355 000.00 UAH**\n\n#### **Витрати:**\n- **Зарплатний фонд за жовтень** (`salaries`): -135 000.00 UAH\n- **Таргетована реклама B2B** (`marketing`): -42 000.00 UAH\n- **Підписки SaaS та OpenRouter** (`software`): -23...",
+      "output": "Ось фінансовий звіт та розрахунок прибутковості за **жовтень 2026 року (2026-10)**:\n\n---\n\n### 📊 Доходи та витрати за період\n\n#### **Доходи:**\n- **Контракт з клієнтом Beta** (`sales`): +310 000.00 UAH\n- **Аудит AI-процесів** (`consulting`): +45 000.00 UAH\n- **Загальний дохід (виручка):** **355 000.00 UAH**\n\n#### **Витрати:**\n- **Зарплатний фонд за жовтень** (`salaries`): -135 000.00 UAH\n- **Таргетована реклама B2B** (`marketing`): -42 000.00 UAH\n- **Підписки SaaS та OpenRouter** (`software`): -23...",
+      "tool_calls": [],
+      "timestamp": "2026-11-21T11:31:02.769028+00:00",
+      "duration_ms": 6266,
+      "elapsed_ms": 14204
+    }
+  ]
+}
