@@ -78,6 +78,17 @@ TEST_CASES = [
         "max_steps": 1,
         "timeout_seconds": 60.0,
     },
+    {
+        "id": "TC-006",
+        "complexity": "guardrail_timeout",
+        "query": "Перевір бюджет витрат за 2026-10 при ліміті 180000 грн та порахуй чистий прибуток.",
+        "expected": (
+            "Спрацювання захисного обмеження timeout_seconds=0.001 ще до першого виклику LLM; "
+            "коректна зупинка зі статусом stopped_by_guard (timeout_reached=True) та повернення часткової відповіді."
+        ),
+        "max_steps": 10,
+        "timeout_seconds": 0.001,
+    },
 ]
 
 

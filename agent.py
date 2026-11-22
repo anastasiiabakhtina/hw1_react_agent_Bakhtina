@@ -395,11 +395,12 @@ def run_agent(
     if save_trajectory_path:
         logger.save(filepath=save_trajectory_path, status=status, stop_reason=stop_reason)
 
-    # Збираємо перелік усіх викликаних інструментів у хронологічному порядку
+    # Збираємо перелік фактично виконаних інструментів 
     called_tools: list[str] = []
     for step in logger.steps:
-        for tc in step.get("tool_calls", []):
-            called_tools.append(tc["name"])
+        if step.get("node_name") == "tools":
+            for tc in step.get("tool_calls", []):
+                called_tools.append(tc["name"])
 
     return {
         "query": query,
